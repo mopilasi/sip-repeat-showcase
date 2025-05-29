@@ -143,6 +143,62 @@
   p {
     color: hsl(var(--foreground) / 0.9);
   }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(180deg, #fde8de 0%, #fef8f6 100%);
+    position: relative;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: url("/assets/wave-divider.svg") no-repeat bottom center;
+    background-size: cover;
+    z-index: 1;
+  }
+
+  /* Navigation */
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 1rem 2rem;
+    z-index: 50;
+  }
+
+  .navbar a,
+  .navbar button {
+    color: #2a2a2a;
+    font-weight: 500;
+    transition: color 0.2s, border-color 0.2s, padding-bottom 0.2s;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 0.25rem;
+  }
+
+  .navbar a:hover,
+  .navbar button:hover {
+    color: #d85a3f;
+    border-bottom-color: #d85a3f;
+  }
+
+  .navbar .active {
+    color: #d85a3f;
+    border-bottom-color: #d85a3f;
+    font-weight: 500;
+  }
+
+  /* Ensure content doesn't hide behind fixed navbar */
+  body {
+    padding-top: 5rem;
+  }
 }
 
 @layer utilities {
@@ -176,4 +232,64 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #d14420, #2c3827);
+}
+
+/* Print Styles */
+@media print {
+  /* Hide elements that shouldn't appear in print/PDF */
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ensure good print layout */
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure proper page breaks */
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* Ensure images and backgrounds print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure links are visible */
+  a {
+    color: #0066cc !important;
+    text-decoration: underline !important;
+  }
+
+  /* Add URL after links */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  /* Ensure proper spacing */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Hide download button in print */
+  .download-button {
+    display: none !important;
+  }
+
+  /* Add page margins */
+  @page {
+    margin: 2cm;
+  }
 }

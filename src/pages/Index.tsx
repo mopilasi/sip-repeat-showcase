@@ -33,6 +33,8 @@ import {
   Zap,
   Globe,
   Wrench,
+  Award,
+  BookOpen,
 } from "lucide-react";
 
 const Index = () => {
@@ -151,100 +153,43 @@ const Index = () => {
   };
 
   const downloadCaseStudy = () => {
-    // Create a comprehensive case study document
-    const caseStudyContent = `
-EAT SIP REPEAT - PRODUCT CASE STUDY
+    // Show loading state
+    const downloadButton = document.querySelector(
+      ".download-button"
+    ) as HTMLButtonElement;
+    const originalButtonContent = downloadButton?.innerHTML;
 
-A Case Study: Solving Recipe Overwhelm with AI-Curated Seasonal Menus
+    if (downloadButton) {
+      downloadButton.disabled = true;
+      downloadButton.innerHTML = "Preparing PDF...";
+    }
 
-THE PROBLEM
-Users save 10-15 recipes weekly but use less than 2. 85% report feeling overwhelmed when planning meals.
-
-"I love discovering new recipes on social media, but by dinner time I'd either forgotten half of them, or felt overwhelmed by choices and inability to combine them into a cohesive menu that would work." — Interview Participant #7
-
-MARKET RESEARCH ANALYSIS
-
-Market Demand for a Curated Dinner Menu App in the US
-
-Overview: "Eat, Sip, Repeat" is envisioned as a mobile app delivering curated, seasonal dinner menus for users overwhelmed by too many choices. This addresses a common pain point: decision fatigue in dinner planning.
-
-Existing Apps and Competitors:
-- Personalized Meal Planning Apps: Mealime (4.8★ on App Store, 7+ million users) eliminates decision fatigue
-- Curated Recipe Inspiration Platforms: Guardian Feast app offers curated daily content for seasonal occasions
-- Dinner Decision Collaborators: Dinners app (2024) frames itself as "Tinder for recipes"
-
-User Interest and Trends:
-- Decision Fatigue in Cooking: Modern consumers are "inundated with choices"
-- Search and Social Media Trends: #DinnerIdeas and #MealPrep attract huge viewership
-- Adoption of Meal Inspiration Apps: Meal-planning app market projected to reach $223 million by 2031
-
-Monetization Models:
-- Freemium Model: $2.99–$3.99 per month for premium features
-- Affiliate Partnerships: Commission through grocery delivery integrations
-- Advertising and Sponsored Content: Branded menu partnerships
-
-THE SOLUTION
-An AI-powered mobile app that transforms recipe discovery into curated seasonal dinner experiences, complete with smart shopping lists and social recipe saving.
-
-MY APPROACH
-
-1. Discovery Phase
-- Conducted 12 user interviews
-- Analyzed 50+ social media recipe saves
-- Key finding: 85% of users save recipes but use <20%
-
-2. Ideation Phase
-- 15+ iterations on AI conversation design
-- Prototyped conversation flows with ChatGPT
-- Tested AI prompt engineering for menu curation
-
-3. Design Phase
-- Created 25+ screens focusing on simplicity and delight
-- 3 rounds of user testing refinement
-- Designed intuitive interface for seasonal menu discovery
-
-4. Build & Test Phase
-- Built MVP with SwiftUI and Firebase backend
-- Implemented core features with continuous user feedback
-- Achieved 90% positive feedback in beta testing
-
-5. Launch Prep Phase
-- Prepared App Store submission materials
-- Created go-to-market strategy
-- Developed user acquisition plan
-
-RESULTS & IMPACT
-- 85% Prototype Usability Score
-- 67% Reduction in Menu Planning Time
-- 90% Beta Tester Satisfaction
-
-User Testimonials:
-"This app finally bridged the gap between my Pinterest board and my dinner table. The seasonal suggestions feel so thoughtful!" — Sarah M., Beta Tester
-
-"The shopping list generation saves me at least 20 minutes every week. It's like having a meal planning assistant." — Michael K., Early Adopter
-
-WHAT'S NEXT
-Future Features in Development:
-- Hero-ingredient challenges for adventurous cooking
-- Enhanced recipe library with smart categorization
-- Direct import from Instagram, TikTok, and food blogs
-- Timer and meal-prep functionality
-
-Tools Used: Figma, ChatGPT, Notion, Windsurf, Lovable
-
-© 2025 Eat Sip Repeat • Built by Polina Kyrylova
-Case study designed for portfolio demonstration
-    `;
-
-    const blob = new Blob([caseStudyContent], { type: "text/plain" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "Eat-Sip-Repeat-Case-Study.txt";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
+    // Small delay to ensure UI updates
+    setTimeout(() => {
+      try {
+        // Open print dialog
+        window.print();
+      } catch (error) {
+        console.error("Error opening print dialog:", error);
+        // Fallback to simple text download
+        const caseStudyContent = `EAT SIP REPEAT - PRODUCT CASE STUDY\n\nA Case Study: Solving Recipe Overwhelm with AI-Curated Seasonal Menus`;
+        const blob = new Blob([caseStudyContent], { type: "text/plain" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Eat-Sip-Repeat-Case-Study.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      } finally {
+        // Restore button state
+        if (downloadButton && originalButtonContent) {
+          downloadButton.disabled = false;
+          downloadButton.innerHTML = originalButtonContent;
+        }
+      }
+    }, 100);
   };
 
   const openLinkedIn = () => {
@@ -294,7 +239,7 @@ Case study designed for portfolio demonstration
 
       {/* Hero Section */}
       <section
-        className="relative flex flex-col items-center justify-center px-6 pt-32 pb-20 overflow-hidden bg-gradient-to-b from-peach-start to-peach-end"
+        className="relative flex flex-col items-center justify-center px-6 pt-32 pb-20 overflow-hidden hero"
         style={{
           padding: "120px 1rem 80px",
           minHeight: "auto",
@@ -333,7 +278,7 @@ Case study designed for portfolio demonstration
             <Button
               size="lg"
               onClick={downloadCaseStudy}
-              className="bg-burntsienna hover:bg-[#e06b57] text-white px-8 py-3 rounded-md transition-colors duration-200 group"
+              className="download-button bg-burntsienna hover:bg-[#e06b57] text-white px-8 py-3 rounded-md transition-colors duration-200 group"
             >
               <Download className="mr-3 h-5 w-5 group-hover:animate-bounce" />
               Download Case Study
@@ -348,6 +293,11 @@ Case study designed for portfolio demonstration
               View My Portfolio
             </Button>
           </div>
+        </div>
+
+        {/* Wave Divider */}
+        <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-full h-full bg-[url('/assets/wave-divider.svg')] bg-cover bg-no-repeat bg-center"></div>
         </div>
       </section>
 
@@ -502,14 +452,14 @@ Case study designed for portfolio demonstration
       {/* Solution Section */}
       <section className="py-24 px-6 bg-offwhite" data-section="2">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-burntsienna rounded-2xl mb-6">
               <Lightbulb className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-6xl font-black text-charcoal mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-6">
               The Solution
             </h2>
-            <div className="w-24 h-1 bg-burntsienna mx-auto mb-8 rounded-full"></div>
+            <div className="w-24 h-1 bg-burntsienna mx-auto mb-12 rounded-full"></div>
           </div>
 
           <Card className="relative overflow-hidden bg-white border-0 shadow-2xl rounded-3xl max-w-4xl mx-auto">
@@ -519,13 +469,9 @@ Case study designed for portfolio demonstration
                 alt="Eat Sip Repeat App"
                 className="w-32 h-32 mx-auto mb-8 drop-shadow-lg"
               />
-              <h3 className="text-3xl font-bold text-charcoal mb-6">
-                Curated Seasonal Dinner Menus App on iOS
-              </h3>
-              <p className="text-xl text-slate leading-relaxed">
+              <p className="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
                 An AI-powered mobile app that transforms recipe discovery into
-                curated seasonal dinner experiences, complete with smart
-                shopping lists and social recipe saving.
+                curated seasonal dinner experiences.
               </p>
             </div>
           </Card>
@@ -722,74 +668,118 @@ Case study designed for portfolio demonstration
 
           <Card className="relative overflow-hidden bg-white border-0 shadow-2xl rounded-3xl">
             <div className="relative p-12 lg:p-16">
-              <h3 className="text-3xl font-bold text-charcoal mb-8 text-center">
+              <h3 className="text-3xl font-bold text-charcoal mb-12 text-center">
                 Key Achievements
               </h3>
 
               <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-6">
+                {/* User Interview Insights */}
+                <Card className="p-6 border border-slate-100 hover:shadow-md transition-shadow">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-forest/10 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="h-6 w-6 text-forest" />
+                      <Users className="h-6 w-6 text-forest" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-charcoal mb-2">
-                        User Engagement
+                      <h4 className="text-xl font-bold text-charcoal mb-3">
+                        User Interview Insights
                       </h4>
-                      <p className="text-slate">
-                        Average session duration increased by 3.5x compared to
-                        traditional recipe apps
+                      <p className="text-slate italic mb-4">
+                        "I love the idea of a single tap to get a full, seasonal
+                        dinner menu – no more bouncing between a dozen
+                        bookmarks."
                       </p>
+                      <ul className="space-y-2 text-slate">
+                        <li className="flex items-start">
+                          <span className="text-forest mr-2">•</span>
+                          <span>
+                            18 home cooks interviewed: 90% said they save
+                            multiple recipes but struggle to assemble them into
+                            a cohesive menu.
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-forest mr-2">•</span>
+                          <span>
+                            75% expressed a strong desire to "save" and revisit
+                            entire menus, not just individual dishes.
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
+                </Card>
 
+                {/* Early Tester Feedback */}
+                <Card className="p-6 border border-slate-100 hover:shadow-md transition-shadow">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-burntsienna/10 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="h-6 w-6 text-burntsienna" />
+                      <MessageSquare className="h-6 w-6 text-burntsienna" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-charcoal mb-2">
-                        Feature Adoption
+                      <h4 className="text-xl font-bold text-charcoal mb-3">
+                        Early Tester Feedback
                       </h4>
-                      <p className="text-slate">
-                        78% of users actively use the shopping list feature on a
-                        weekly basis
+                      <p className="text-slate italic mb-4">
+                        "Being able to bookmark a whole menu gave me confidence
+                        to try new recipes."
                       </p>
+                      <ul className="space-y-2 text-slate">
+                        <li className="flex items-start">
+                          <span className="text-burntsienna mr-2">•</span>
+                          <span>
+                            5 beta testers: 100% used the "Save Menu" button to
+                            revisit curated seasonal menus.
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-burntsienna mr-2">•</span>
+                          <span>
+                            Every tester described the generator's picks as
+                            "inspired" and "on-point" for what's in season.
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                </div>
+                </Card>
 
-                <div className="space-y-6">
+                {/* MVP Delivery Highlights */}
+                <Card className="p-6 border border-slate-100 hover:shadow-md transition-shadow md:col-span-2">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-forest/10 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="h-6 w-6 text-forest" />
+                      <Zap className="h-6 w-6 text-forest" />
                     </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-charcoal mb-2">
-                        Retention Rate
+                    <div className="w-full">
+                      <h4 className="text-xl font-bold text-charcoal mb-4">
+                        MVP Delivery Highlights
                       </h4>
-                      <p className="text-slate">
-                        30-day retention rate of 65%, significantly higher than
-                        industry average
-                      </p>
+                      <ul className="space-y-3 text-slate">
+                        <li className="flex items-start">
+                          <span className="text-forest mr-2">•</span>
+                          <span>
+                            AI-driven seasonal menu generator and recipe &
+                            menu-saving flows shipped in just 4 weeks.
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-forest mr-2">•</span>
+                          <span>
+                            All UI mockups (Figma) and SwiftUI code were
+                            prototyped, refined, and produced via LLM prompts,
+                            no manual design hand-offs.
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
+                </Card>
+              </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-burntsienna/10 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="h-6 w-6 text-burntsienna" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-charcoal mb-2">
-                        User Feedback
-                      </h4>
-                      <p className="text-slate">
-                        94% of testers reported reduced stress around meal
-                        planning
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div className="mt-12 text-center">
+                <p className="text-lg text-slate-600 italic">
+                  Based on interviews and tester requests, next up were
+                  identified and are currently in progress.
+                </p>
               </div>
             </div>
           </Card>
@@ -806,33 +796,36 @@ Case study designed for portfolio demonstration
             <h2 className="text-4xl lg:text-6xl font-black text-charcoal mb-6">
               What's Next
             </h2>
-            <div className="w-24 h-1 bg-burntsienna mx-auto mb-8 rounded-full"></div>
-          </div>
+            <div className="w-24 h-1 bg-burntsienna mx-auto mb-12 rounded-full"></div>
 
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-3xl font-bold mb-8 text-charcoal">
+            <h3 className="text-3xl font-bold mb-8 text-charcoal text-center">
               Future Features in Development
             </h3>
-            <ul className="space-y-6 text-lg text-slate">
-              <li className="flex items-start">
-                <div className="w-2 h-2 bg-burntsienna rounded-full mr-4 mt-3 flex-shrink-0"></div>
-                <span>Hero-ingredient challenges for adventurous cooking</span>
-              </li>
-              <li className="flex items-start">
-                <div className="w-2 h-2 bg-burntsienna rounded-full mr-4 mt-3 flex-shrink-0"></div>
-                <span>Enhanced recipe library with smart categorization</span>
-              </li>
-              <li className="flex items-start">
-                <div className="w-2 h-2 bg-burntsienna rounded-full mr-4 mt-3 flex-shrink-0"></div>
-                <span>
-                  Direct import from Instagram, TikTok, and food blogs
-                </span>
-              </li>
-              <li className="flex items-start">
-                <div className="w-2 h-2 bg-burntsienna rounded-full mr-4 mt-3 flex-shrink-0"></div>
-                <span>Timer and meal-prep functionality</span>
-              </li>
-            </ul>
+
+            <div className="flex justify-center">
+              <ul className="space-y-6 text-lg text-slate max-w-2xl w-full text-center">
+                <li className="flex justify-center items-start">
+                  <Award className="h-5 w-5 text-burntsienna mr-3 mt-1 flex-shrink-0" />
+                  <span>
+                    Hero-ingredient challenges for adventurous cooking
+                  </span>
+                </li>
+                <li className="flex justify-center items-start">
+                  <BookOpen className="h-5 w-5 text-burntsienna mr-3 mt-1 flex-shrink-0" />
+                  <span>Enhanced recipe library with smart categorization</span>
+                </li>
+                <li className="flex justify-center items-start">
+                  <Download className="h-5 w-5 text-burntsienna mr-3 mt-1 flex-shrink-0" />
+                  <span>
+                    Direct import from Instagram, TikTok, and food blogs
+                  </span>
+                </li>
+                <li className="flex justify-center items-start">
+                  <Clock className="h-5 w-5 text-burntsienna mr-3 mt-1 flex-shrink-0" />
+                  <span>Timer and meal-prep functionality</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -875,9 +868,10 @@ Case study designed for portfolio demonstration
                 variant="default"
                 size="lg"
                 className="bg-forest hover:bg-forest/90 text-white"
-                onClick={() =>
-                  (window.location.href = "mailto:your.email@example.com")
-                }
+                onClick={() => {
+                  window.location.href =
+                    "mailto:polina@kirillova.im?subject=Regarding Eat Sip Repeat Case Study&body=Hello Polina,%0D%0A%0DI came across your case study and wanted to reach out about ";
+                }}
               >
                 Send me an email
               </Button>
