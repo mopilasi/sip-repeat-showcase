@@ -71,7 +71,7 @@ const Index = () => {
       description:
         "User interviews revealed the disconnect between recipe inspiration and execution",
       details:
-        "Conducted 12 user interviews, analyzed 50+ social media recipe saves",
+        "Conducted 18 user interviews, analyzed 50+ social media recipe saves",
       metric: "85% of users save recipes but use <20%",
       gradient: "from-sage-500 to-sage-600",
       modalContent:
@@ -265,7 +265,7 @@ const Index = () => {
             isVisible ? "animate-fade-in" : "opacity-0"
           }`}
         >
-          <h1 className="text-5xl md:text-[64px] font-bold text-charcoal mb-6 leading-tight">
+          <h1 className="text-5xl md:text-[84px] font-bold text-charcoal mb-6 leading-tight font-['Druk_Wide_Bold']">
             Eat Sip Repeat
           </h1>
 
@@ -323,10 +323,10 @@ const Index = () => {
                     "I love discovering new recipes on social media, but by
                     dinner time I'd either forgotten half of them, or felt
                     overwhelmed by choices and inability to combine them into a
-                    cohesive menu that would work."
+                    cohesive menu that would work"
                   </blockquote>
                   <cite className="text-lg text-slate font-medium">
-                    — Interview Participant #7
+                    — Interview Participant
                   </cite>
                 </div>
 
@@ -863,17 +863,6 @@ const Index = () => {
               >
                 <Linkedin className="h-5 w-5 mr-2" />
                 Connect on LinkedIn
-              </Button>
-              <Button
-                variant="default"
-                size="lg"
-                className="bg-forest hover:bg-forest/90 text-white"
-                onClick={() => {
-                  window.location.href =
-                    "mailto:polina@kirillova.im?subject=Regarding Eat Sip Repeat Case Study&body=Hello Polina,%0D%0A%0DI came across your case study and wanted to reach out about ";
-                }}
-              >
-                Send me an email
               </Button>
             </div>
           </div>
