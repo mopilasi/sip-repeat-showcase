@@ -157,11 +157,11 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden" data-section="0">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-gradient-to-br from-coral-500 to-coral-600" data-section="0">
         {/* Background Elements */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-coral-500/20 to-cream-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-forest-500/20 to-sand-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-white/10 to-cream-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-white/10 to-sand-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
         <div className={`text-center max-w-6xl mx-auto transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -173,18 +173,14 @@ const Index = () => {
             />
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-forest-900 via-forest-700 to-forest-900 bg-clip-text text-transparent mb-6 tracking-tight">
-            Eat Sip Repeat
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-slate-600 mb-12 leading-relaxed max-w-4xl mx-auto font-light">
+          <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-4xl mx-auto font-light">
             A Case Study: Solving Recipe Overwhelm with AI-Curated Seasonal Menus
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-coral-500 to-coral-600 hover:from-coral-600 hover:to-coral-700 text-white px-10 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl rounded-2xl group"
+              className="bg-white text-coral-600 hover:bg-white/90 px-10 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl rounded-2xl group"
             >
               <Download className="mr-3 h-6 w-6 group-hover:animate-bounce" />
               Download Case Study PDF
@@ -192,7 +188,7 @@ const Index = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-2 border-forest-300 text-forest-700 hover:bg-forest-50 px-10 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 rounded-2xl group backdrop-blur-sm"
+              className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 rounded-2xl group backdrop-blur-sm"
             >
               <ExternalLink className="mr-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
               View My Portfolio
@@ -200,19 +196,19 @@ const Index = () => {
           </div>
 
           <div className="mb-12">
-            <h3 className="text-lg font-semibold text-forest-800 mb-6">Toolkit</h3>
+            <h3 className="text-lg font-semibold text-white/90 mb-6">Toolkit</h3>
             <div className="flex flex-wrap justify-center gap-4">
               {tools.map((tool) => (
                 <div 
                   key={tool.name} 
-                  className="bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-all duration-300 hover:scale-105 px-6 py-3 rounded-2xl border border-slate-200/50 shadow-sm flex items-center space-x-3"
+                  className="bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-300 hover:scale-105 px-6 py-3 rounded-2xl border border-white/20 shadow-sm flex items-center space-x-3"
                 >
                   {tool.icon.startsWith('/') ? (
                     <img src={tool.icon} alt={tool.name} className="w-6 h-6" />
                   ) : (
                     <span className="text-lg">{tool.icon}</span>
                   )}
-                  <span className="text-sm font-medium text-slate-700">{tool.name}</span>
+                  <span className="text-sm font-medium text-white/90">{tool.name}</span>
                 </div>
               ))}
             </div>
@@ -502,11 +498,11 @@ const Index = () => {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button className="bg-gradient-to-r from-coral-500 to-coral-600 hover:from-coral-600 hover:to-coral-700 text-white group rounded-2xl px-8 py-4">
+                  <Button className="bg-gradient-to-r from-coral-500 to-coral-600 hover:from-coral-600 hover:to-coral-700 text-white group rounded-2xl px-8 py-4 shadow-lg border-0">
                     <Mail className="mr-3 h-5 w-5 group-hover:scale-110 transition-transform" />
                     Get in Touch
                   </Button>
-                  <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-2xl px-8 py-4">
+                  <Button className="bg-white/20 hover:bg-white/30 text-white border-0 rounded-2xl px-8 py-4 backdrop-blur-sm">
                     <FileText className="mr-3 h-5 w-5" />
                     Download Full Case Study
                   </Button>
