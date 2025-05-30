@@ -473,6 +473,17 @@ const Index = () => {
                 An AI-powered mobile app that transforms recipe discovery into
                 curated seasonal dinner experiences.
               </p>
+              <div className="mt-8">
+                <a
+                  href="https://apps.apple.com/app/eat-sip-repeat/id6746393318"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors duration-200"
+                >
+                  <span>Download on the</span>
+                  <span className="ml-2 font-bold">App Store</span>
+                </a>
+              </div>
             </div>
           </Card>
         </div>
