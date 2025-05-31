@@ -11,6 +11,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
   Smartphone,
   CheckCircle,
   Share2,
@@ -129,31 +136,46 @@ const Index = () => {
       name: "Figma",
       icon: "/lovable-uploads/f998696d-19ad-4cc2-9c18-5a9ef8ae6f24.png",
       description: "UI/UX Design & Wireframing",
-      modalImage: "/lovable-uploads/fae70377-5674-488e-9a03-5b93c7c8cfb8.png",
+      modalImages: [
+        "/lovable-uploads/fae70377-5674-488e-9a03-5b93c7c8cfb8.png",
+        "/lovable-uploads/fae70377-5674-488e-9a03-5b93c7c8cfb8.png"
+      ],
     },
     {
       name: "ChatGPT",
       icon: "/lovable-uploads/download.png",
       description: "AI-Powered Research & Ideation",
-      modalImage: "/lovable-uploads/ef508c26-74d9-43d7-8522-ee3fb1e55de6.png",
+      modalImages: [
+        "/lovable-uploads/ef508c26-74d9-43d7-8522-ee3fb1e55de6.png",
+        "/lovable-uploads/ef508c26-74d9-43d7-8522-ee3fb1e55de6.png"
+      ],
     },
     {
       name: "Notion",
       icon: "/lovable-uploads/63d0820a-ab80-47af-bb12-40354d9f20dd.png",
       description: "Project Planning & Documentation",
-      modalImage: "/lovable-uploads/7124d389-e69f-4648-b267-a79d0d7acb15.png",
+      modalImages: [
+        "/lovable-uploads/7124d389-e69f-4648-b267-a79d0d7acb15.png",
+        "/lovable-uploads/7124d389-e69f-4648-b267-a79d0d7acb15.png"
+      ],
     },
     {
       name: "Windsurf",
       icon: "/lovable-uploads/download (1).png",
       description: "AI-Assisted Development",
-      modalImage: "/lovable-uploads/cc649b48-7cc5-4801-a584-4d75437a12bc.png",
+      modalImages: [
+        "/lovable-uploads/cc649b48-7cc5-4801-a584-4d75437a12bc.png",
+        "/lovable-uploads/cc649b48-7cc5-4801-a584-4d75437a12bc.png"
+      ],
     },
     {
       name: "Lovable",
       icon: "/lovable-uploads/65e23c88-75a5-4f21-9be1-e74049cda5af.png",
       description: "Case Study Creation",
-      modalImage: "/lovable-uploads/14f27b14-2ce8-4cb0-ad7e-8067449ba695.png",
+      modalImages: [
+        "/lovable-uploads/dd7fdc2d-7364-4a01-844a-8e2169c37b9d.png",
+        "/lovable-uploads/dd7fdc2d-7364-4a01-844a-8e2169c37b9d.png"
+      ],
     },
   ];
 
@@ -552,11 +574,23 @@ const Index = () => {
                       </DialogTitle>
                     </DialogHeader>
                     <div className="mt-6">
-                      <img
-                        src={tool.modalImage}
-                        alt={`${tool.name} workflow`}
-                        className="w-full h-auto rounded-lg border border-slate-200"
-                      />
+                      <Carousel className="w-full max-w-3xl mx-auto">
+                        <CarouselContent>
+                          {tool.modalImages.map((image, index) => (
+                            <CarouselItem key={index}>
+                              <div className="p-1">
+                                <img
+                                  src={image}
+                                  alt={`${tool.name} workflow ${index + 1}`}
+                                  className="w-full h-auto rounded-lg border border-slate-200"
+                                />
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                      </Carousel>
                     </div>
                   </DialogContent>
                 </Dialog>
@@ -927,12 +961,7 @@ const Index = () => {
                 variant="outline"
                 size="lg"
                 className="bg-transparent text-charcoal border-charcoal/30 hover:bg-charcoal/5 hover:border-charcoal/60 hover:text-charcoal px-8 py-3 transition-all duration-200"
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/in/yourprofile",
-                    "_blank"
-                  )
-                }
+                onClick={openLinkedIn}
               >
                 <Linkedin className="h-5 w-5 mr-2" />
                 Connect on LinkedIn
