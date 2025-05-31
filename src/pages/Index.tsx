@@ -514,11 +514,14 @@ const Index = () => {
             </h2>
             <div className="w-24 h-1 bg-burntsienna mx-auto mb-8 rounded-full"></div>
           </div>
-          
+
           <div className="flex justify-center px-4 mb-12">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl w-full">
               {tools.map((tool) => (
-                <div key={tool.name} className="group relative bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:border-burntsienna/30 hover:-translate-y-1 flex flex-col items-center justify-center aspect-square">
+                <div
+                  key={tool.name}
+                  className="group relative bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:border-burntsienna/30 hover:-translate-y-1 flex flex-col items-center justify-center aspect-square"
+                >
                   <div className="w-16 h-16 flex items-center justify-center mb-3 p-2">
                     <img
                       src={tool.icon}
@@ -559,26 +562,57 @@ const Index = () => {
                 </h3>
                 <div className="w-16 h-0.5 bg-burntsienna mx-auto rounded-full"></div>
               </div>
-              
+
               <div className="prose prose-slate max-w-none text-center">
                 <p className="text-lg text-slate leading-relaxed mb-6">
-                  What started as a simple idea floating around in my head – <em>"What if there was an app that just told you what to cook for dinner?"</em> – evolved into a comprehensive product through the power of AI-assisted development and thoughtful prompting.
+                  The spark for Eat Sip Repeat came from a simple yet persistent
+                  question: "What if an app could just tell you what to cook for
+                  dinner?" I grew tired of spending hours scouring recipe sites
+                  and social feeds every time I hosted friends, feeling
+                  overwhelmed by the endless options. All I wanted was something
+                  that would instantly assemble a balanced menu from the sources
+                  I already trusted. Through the power of AI-assisted
+                  development and thoughtful prompting, this idea evolved into a
+                  product called Eat Sip Repeat.
                 </p>
-                
+
                 <p className="text-lg text-slate leading-relaxed mb-6">
-                  The entire journey was orchestrated like assembling IKEA furniture, but instead of cryptic diagrams and allen keys, I had AI tools and strategic prompts. <strong>ChatGPT</strong> became my research partner, helping me validate market demand and explore user pain points through structured analysis. Every insight was carefully documented and organized in <strong>Notion</strong>, creating a detailed project roadmap with clear deliverables and milestones.
+                  The entire journey was orchestrated like assembling IKEA
+                  furniture, but instead of cryptic diagrams and allen keys, I
+                  had AI tools and strategic prompts. <strong>ChatGPT</strong>{" "}
+                  became my research partner, helping me validate market demand
+                  and explore user pain points through structured analysis.
+                  Every insight was carefully documented and organized in{" "}
+                  <strong>Notion</strong>, creating a detailed project roadmap
+                  with clear deliverables and milestones.
                 </p>
-                
+
                 <p className="text-lg text-slate leading-relaxed mb-6">
-                  The visual identity came to life in <strong>Figma</strong>, where I prototyped user flows and designed a cohesive brand system that would feel both approachable and sophisticated. Each screen was thoughtfully crafted to solve the core problem: decision fatigue in meal planning.
+                  The visual identity came to life in <strong>Figma</strong>,
+                  where I prototyped user flows and designed a cohesive brand
+                  system that would feel both approachable and sophisticated.
+                  Each screen was thoughtfully crafted to solve the core
+                  problem: decision fatigue in meal planning.
                 </p>
-                
+
                 <p className="text-lg text-slate leading-relaxed mb-6">
-                  The magic happened in <strong>Windsurf</strong>, where the majority of the iOS app was coded through intelligent collaboration between human creativity and AI capability. SwiftUI components, data models, and user interfaces emerged through iterative prompting and refinement – proving that great products can be built when you know how to communicate effectively with AI.
+                  The magic happened in <strong>Windsurf</strong>, where the
+                  majority of the iOS app was coded through intelligent
+                  collaboration between human creativity and AI capability.
+                  SwiftUI components, data models, and user interfaces emerged
+                  through iterative prompting and refinement – proving that
+                  great products can be built when you know how to communicate
+                  effectively with AI.
                 </p>
-                
+
                 <p className="text-lg text-slate leading-relaxed">
-                  And finally, this very case study was assembled in <strong>Lovable</strong>, transforming technical documentation into a compelling narrative that showcases not just the final product, but the thoughtful process behind it. Each tool played its part in a symphony of AI-assisted creation, demonstrating that the future of product development isn't about replacing human creativity – it's about amplifying it.
+                  And finally, this very case study was assembled in{" "}
+                  <strong>Lovable</strong>, transforming technical documentation
+                  into a compelling narrative that showcases not just the final
+                  product, but the thoughtful process behind it. Each tool
+                  played its part in a symphony of AI-assisted creation,
+                  demonstrating that the future of product development isn't
+                  about replacing human creativity – it's about amplifying it.
                 </p>
               </div>
             </div>
