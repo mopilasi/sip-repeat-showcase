@@ -136,46 +136,26 @@ const Index = () => {
       name: "Figma",
       icon: "/lovable-uploads/f998696d-19ad-4cc2-9c18-5a9ef8ae6f24.png",
       description: "UI/UX Design & Wireframing",
-      modalImages: [
-        "/lovable-uploads/fae70377-5674-488e-9a03-5b93c7c8cfb8.png",
-        "/lovable-uploads/fae70377-5674-488e-9a03-5b93c7c8cfb8.png"
-      ],
     },
     {
       name: "ChatGPT",
       icon: "/lovable-uploads/download.png",
       description: "AI-Powered Research & Ideation",
-      modalImages: [
-        "/lovable-uploads/ef508c26-74d9-43d7-8522-ee3fb1e55de6.png",
-        "/lovable-uploads/ef508c26-74d9-43d7-8522-ee3fb1e55de6.png"
-      ],
     },
     {
       name: "Notion",
       icon: "/lovable-uploads/63d0820a-ab80-47af-bb12-40354d9f20dd.png",
       description: "Project Planning & Documentation",
-      modalImages: [
-        "/lovable-uploads/7124d389-e69f-4648-b267-a79d0d7acb15.png",
-        "/lovable-uploads/7124d389-e69f-4648-b267-a79d0d7acb15.png"
-      ],
     },
     {
       name: "Windsurf",
       icon: "/lovable-uploads/download (1).png",
       description: "AI-Assisted Development",
-      modalImages: [
-        "/lovable-uploads/cc649b48-7cc5-4801-a584-4d75437a12bc.png",
-        "/lovable-uploads/cc649b48-7cc5-4801-a584-4d75437a12bc.png"
-      ],
     },
     {
       name: "Lovable",
       icon: "/lovable-uploads/65e23c88-75a5-4f21-9be1-e74049cda5af.png",
       description: "Case Study Creation",
-      modalImages: [
-        "/lovable-uploads/dd7fdc2d-7364-4a01-844a-8e2169c37b9d.png",
-        "/lovable-uploads/dd7fdc2d-7364-4a01-844a-8e2169c37b9d.png"
-      ],
     },
   ];
 
@@ -566,7 +546,7 @@ const Index = () => {
                       <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-burntsienna/20 transition-all duration-300 pointer-events-none"></div>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                  <DialogContent className="max-w-2xl">
                     <DialogHeader>
                       <DialogTitle className="text-2xl font-bold text-charcoal flex items-center gap-3">
                         <img src={tool.icon} alt={tool.name} className="w-8 h-8" />
@@ -574,23 +554,9 @@ const Index = () => {
                       </DialogTitle>
                     </DialogHeader>
                     <div className="mt-6">
-                      <Carousel className="w-full max-w-3xl mx-auto">
-                        <CarouselContent>
-                          {tool.modalImages.map((image, index) => (
-                            <CarouselItem key={index}>
-                              <div className="p-1">
-                                <img
-                                  src={image}
-                                  alt={`${tool.name} workflow ${index + 1}`}
-                                  className="w-full h-auto rounded-lg border border-slate-200"
-                                />
-                              </div>
-                            </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                      </Carousel>
+                      <p className="text-slate text-lg">
+                        Learn more about how {tool.name} was used in this project.
+                      </p>
                     </div>
                   </DialogContent>
                 </Dialog>
