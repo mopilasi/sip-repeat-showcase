@@ -40,6 +40,7 @@ import {
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
+  const [selectedTool, setSelectedTool] = useState<string | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -127,22 +128,32 @@ const Index = () => {
     {
       name: "Figma",
       icon: "/lovable-uploads/f998696d-19ad-4cc2-9c18-5a9ef8ae6f24.png",
+      description: "UI/UX Design & Wireframing",
+      modalImage: "/lovable-uploads/fae70377-5674-488e-9a03-5b93c7c8cfb8.png",
     },
     {
       name: "ChatGPT",
       icon: "/lovable-uploads/download.png",
+      description: "AI-Powered Research & Ideation",
+      modalImage: "/lovable-uploads/ef508c26-74d9-43d7-8522-ee3fb1e55de6.png",
     },
     {
       name: "Notion",
       icon: "/lovable-uploads/63d0820a-ab80-47af-bb12-40354d9f20dd.png",
+      description: "Project Planning & Documentation",
+      modalImage: "/lovable-uploads/7124d389-e69f-4648-b267-a79d0d7acb15.png",
     },
     {
       name: "Windsurf",
       icon: "/lovable-uploads/download (1).png",
+      description: "AI-Assisted Development",
+      modalImage: "/lovable-uploads/cc649b48-7cc5-4801-a584-4d75437a12bc.png",
     },
     {
       name: "Lovable",
       icon: "/lovable-uploads/65e23c88-75a5-4f21-9be1-e74049cda5af.png",
+      description: "Case Study Creation",
+      modalImage: "/lovable-uploads/14f27b14-2ce8-4cb0-ad7e-8067449ba695.png",
     },
   ];
 
@@ -501,40 +512,91 @@ const Index = () => {
             </h2>
             <div className="w-24 h-1 bg-burntsienna mx-auto mb-8 rounded-full"></div>
           </div>
-          <div className="flex justify-center px-4">
+          
+          <div className="flex justify-center px-4 mb-12">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl w-full">
               {tools.map((tool) => (
-                <div
-                  key={tool.name}
-                  className="group relative bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:border-burntsienna/30 hover:-translate-y-1 flex flex-col items-center justify-center aspect-square"
-                >
-                  <div className="w-16 h-16 flex items-center justify-center mb-3 p-2">
-                    <img
-                      src={tool.icon}
-                      alt={tool.name}
-                      className="w-full h-full object-contain max-w-[80%] max-h-[80%]"
-                      loading="lazy"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = "none";
-                        const fallback = document.createElement("div");
-                        fallback.className = "text-2xl text-charcoal";
-                        fallback.textContent = tool.name.charAt(0);
-                        target.parentNode?.insertBefore(
-                          fallback,
-                          target.nextSibling
-                        );
-                      }}
-                    />
-                  </div>
-                  <span className="text-sm font-medium text-slate text-center">
-                    {tool.name}
-                  </span>
-                  <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-burntsienna/20 transition-all duration-300 pointer-events-none"></div>
-                </div>
+                <Dialog key={tool.name}>
+                  <DialogTrigger asChild>
+                    <div className="group relative bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:border-burntsienna/30 hover:-translate-y-1 flex flex-col items-center justify-center aspect-square cursor-pointer">
+                      <div className="w-16 h-16 flex items-center justify-center mb-3 p-2">
+                        <img
+                          src={tool.icon}
+                          alt={tool.name}
+                          className="w-full h-full object-contain max-w-[80%] max-h-[80%]"
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                            const fallback = document.createElement("div");
+                            fallback.className = "text-2xl text-charcoal";
+                            fallback.textContent = tool.name.charAt(0);
+                            target.parentNode?.insertBefore(
+                              fallback,
+                              target.nextSibling
+                            );
+                          }}
+                        />
+                      </div>
+                      <span className="text-sm font-medium text-slate text-center">
+                        {tool.name}
+                      </span>
+                      <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-burntsienna/20 transition-all duration-300 pointer-events-none"></div>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl font-bold text-charcoal flex items-center gap-3">
+                        <img src={tool.icon} alt={tool.name} className="w-8 h-8" />
+                        {tool.name} - {tool.description}
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-6">
+                      <img
+                        src={tool.modalImage}
+                        alt={`${tool.name} workflow`}
+                        className="w-full h-auto rounded-lg border border-slate-200"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               ))}
             </div>
           </div>
+
+          {/* Vibe-Coding Journey Description */}
+          <Card className="relative overflow-hidden bg-white border-0 shadow-xl rounded-3xl max-w-4xl mx-auto">
+            <div className="relative p-8 lg:p-12">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-charcoal mb-4">
+                  The Vibe-Coding Journey: From Idea to Reality
+                </h3>
+                <div className="w-16 h-0.5 bg-burntsienna mx-auto rounded-full"></div>
+              </div>
+              
+              <div className="prose prose-slate max-w-none text-center">
+                <p className="text-lg text-slate leading-relaxed mb-6">
+                  What started as a simple idea floating around in my head – <em>"What if there was an app that just told you what to cook for dinner?"</em> – evolved into a comprehensive product through the power of AI-assisted development and thoughtful prompting.
+                </p>
+                
+                <p className="text-lg text-slate leading-relaxed mb-6">
+                  The entire journey was orchestrated like assembling IKEA furniture, but instead of cryptic diagrams and allen keys, I had AI tools and strategic prompts. <strong>ChatGPT</strong> became my research partner, helping me validate market demand and explore user pain points through structured analysis. Every insight was carefully documented and organized in <strong>Notion</strong>, creating a detailed project roadmap with clear deliverables and milestones.
+                </p>
+                
+                <p className="text-lg text-slate leading-relaxed mb-6">
+                  The visual identity came to life in <strong>Figma</strong>, where I prototyped user flows and designed a cohesive brand system that would feel both approachable and sophisticated. Each screen was thoughtfully crafted to solve the core problem: decision fatigue in meal planning.
+                </p>
+                
+                <p className="text-lg text-slate leading-relaxed mb-6">
+                  The magic happened in <strong>Windsurf</strong>, where the majority of the iOS app was coded through intelligent collaboration between human creativity and AI capability. SwiftUI components, data models, and user interfaces emerged through iterative prompting and refinement – proving that great products can be built when you know how to communicate effectively with AI.
+                </p>
+                
+                <p className="text-lg text-slate leading-relaxed">
+                  And finally, this very case study was assembled in <strong>Lovable</strong>, transforming technical documentation into a compelling narrative that showcases not just the final product, but the thoughtful process behind it. Each tool played its part in a symphony of AI-assisted creation, demonstrating that the future of product development isn't about replacing human creativity – it's about amplifying it.
+                </p>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
