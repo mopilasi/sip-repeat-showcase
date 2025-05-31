@@ -518,48 +518,34 @@ const Index = () => {
           <div className="flex justify-center px-4 mb-12">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl w-full">
               {tools.map((tool) => (
-                <Dialog key={tool.name}>
-                  <DialogTrigger asChild>
-                    <div className="group relative bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:border-burntsienna/30 hover:-translate-y-1 flex flex-col items-center justify-center aspect-square cursor-pointer">
-                      <div className="w-16 h-16 flex items-center justify-center mb-3 p-2">
-                        <img
-                          src={tool.icon}
-                          alt={tool.name}
-                          className="w-full h-full object-contain max-w-[80%] max-h-[80%]"
-                          loading="lazy"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = "none";
-                            const fallback = document.createElement("div");
-                            fallback.className = "text-2xl text-charcoal";
-                            fallback.textContent = tool.name.charAt(0);
-                            target.parentNode?.insertBefore(
-                              fallback,
-                              target.nextSibling
-                            );
-                          }}
-                        />
-                      </div>
-                      <span className="text-sm font-medium text-slate text-center">
-                        {tool.name}
-                      </span>
-                      <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-burntsienna/20 transition-all duration-300 pointer-events-none"></div>
-                    </div>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl">
-                    <DialogHeader>
-                      <DialogTitle className="text-2xl font-bold text-charcoal flex items-center gap-3">
-                        <img src={tool.icon} alt={tool.name} className="w-8 h-8" />
-                        {tool.name} - {tool.description}
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="mt-6">
-                      <p className="text-slate text-lg">
-                        Learn more about how {tool.name} was used in this project.
-                      </p>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <div key={tool.name} className="group relative bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:border-burntsienna/30 hover:-translate-y-1 flex flex-col items-center justify-center aspect-square">
+                  <div className="w-16 h-16 flex items-center justify-center mb-3 p-2">
+                    <img
+                      src={tool.icon}
+                      alt={tool.name}
+                      className="w-full h-full object-contain max-w-[80%] max-h-[80%]"
+                      loading="lazy"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        const fallback = document.createElement("div");
+                        fallback.className = "text-2xl text-charcoal";
+                        fallback.textContent = tool.name.charAt(0);
+                        target.parentNode?.insertBefore(
+                          fallback,
+                          target.nextSibling
+                        );
+                      }}
+                    />
+                  </div>
+                  <span className="text-sm font-medium text-slate text-center">
+                    {tool.name}
+                  </span>
+                  <span className="text-xs text-slate/70 text-center mt-1">
+                    {tool.description}
+                  </span>
+                  <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-burntsienna/20 transition-all duration-300 pointer-events-none"></div>
+                </div>
               ))}
             </div>
           </div>
