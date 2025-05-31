@@ -565,15 +565,14 @@ const Index = () => {
 
               <div className="prose prose-slate max-w-none text-center">
                 <p className="text-lg text-slate leading-relaxed mb-6">
-                  The spark for Eat Sip Repeat came from a simple yet persistent
-                  question: "What if an app could just tell you what to cook for
-                  dinner?" I grew tired of spending hours scouring recipe sites
-                  and social feeds every time I hosted friends, feeling
-                  overwhelmed by the endless options. All I wanted was something
-                  that would instantly assemble a balanced menu from the sources
-                  I already trusted. Through the power of AI-assisted
-                  development and thoughtful prompting, this idea evolved into a
-                  product called Eat Sip Repeat.
+                  The spark for Eat Sip Repeat came from me growing tired of
+                  spending hours scouring recipe sites and social feeds every
+                  time I hosted friends, feeling overwhelmed by the endless
+                  options. All I wanted was something that would instantly
+                  assemble a balanced menu from the sources I already trusted.
+                  Through the power of AI-assisted development and thoughtful
+                  prompting, this idea evolved into a product called Eat Sip
+                  Repeat.
                 </p>
 
                 <p className="text-lg text-slate leading-relaxed mb-6">
